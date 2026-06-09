@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #0b1f3a;
+  font-family: "Tajawal", system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(213, 113, 12, 0.25);
+  color: #0b1f3a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef2f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3cedb;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d5710c;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/40;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold-gradient text-white shadow-gold hover:-translate-y-0.5 hover:shadow-glow active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply btn border border-navy/20 bg-navy/[0.04] text-navy hover:border-gold hover:bg-gold/10 hover:text-gold;
+  }
+
+  /* زر شفاف على خلفية داكنة (مثل النافبار/الهيرو فوق الفيديو) */
+  .btn-light {
+    @apply btn border border-white/30 bg-white/10 text-white backdrop-blur hover:border-gold hover:bg-gold hover:text-white;
+  }
+
+  .btn-ghost {
+    @apply btn bg-navy/5 text-navy backdrop-blur hover:bg-navy/10;
+  }
+
+  .glass {
+    @apply border border-navy/10 bg-white/75 backdrop-blur-xl;
+  }
+
+  .card {
+    @apply rounded-2xl border border-navy/10 bg-white shadow-soft;
+  }
+
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-bold tracking-widest text-gold;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(
+      100deg,
+      #e7ecf5 30%,
+      #f08a28 50%,
+      #e7ecf5 70%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* hide scrollbar for horizontal carousels */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
