@@ -3,12 +3,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
 import PageHeader from "@/components/PageHeader";
 import SectionHeading from "@/components/SectionHeading";
-import Reveal from "@/components/Reveal";
-import VisionMission from "@/sections/VisionMission";
+import AboutPreview from "@/sections/AboutPreview";
+import MissionSlider from "@/sections/MissionSlider";
+import WhyUs from "@/sections/WhyUs";
 import Stats from "@/sections/Stats";
 import CTA from "@/sections/CTA";
-import { staggerContainer, fadeUp } from "@/lib/motion";
-import { Gem, Shield, Handshake, Sparkles } from "@/components/Icons";
 
 const timeline = [
   {
@@ -36,13 +35,6 @@ const timeline = [
     title: "نحو المستقبل",
     desc: "نواصل بناء مجتمعات تعيد تعريف الحياة العصرية مع محفظة مشاريع تتجاوز كل التوقعات.",
   },
-];
-
-const values = [
-  { icon: Gem, title: "الإتقان", desc: "نسعى للكمال في كل تفصيلة." },
-  { icon: Shield, title: "النزاهة", desc: "الشفافية أساس علاقتنا بعملائنا." },
-  { icon: Handshake, title: "الالتزام", desc: "وعودنا عهد نلتزم به دائمًا." },
-  { icon: Sparkles, title: "الابتكار", desc: "نبتكر حلولًا تواكب المستقبل." },
 ];
 
 function Timeline() {
@@ -112,6 +104,15 @@ export default function About() {
         crumbs={[{ to: "/", label: "الرئيسية" }, { label: "من نحن" }]}
       />
 
+      {/* من نحن */}
+      <AboutPreview />
+
+      {/* رسالتنا / رؤيتنا / قيمنا */}
+      <MissionSlider />
+
+      {/* لماذا تختارنا */}
+      <WhyUs />
+
       <section className="section">
         <div className="container-x">
           <SectionHeading
@@ -124,40 +125,6 @@ export default function About() {
       </section>
 
       <Stats />
-
-      <VisionMission />
-
-      <section className="section">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="قيمنا"
-            title="المبادئ التي نؤمن بها"
-          />
-          <motion.div
-            variants={staggerContainer(0.12)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {values.map((v) => (
-              <motion.div
-                key={v.title}
-                variants={fadeUp}
-                className="card p-7 text-center transition-colors hover:border-gold/40"
-              >
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/15 text-gold">
-                  <v.icon className="h-7 w-7" />
-                </div>
-                <h3 className="font-display text-lg font-bold text-navy">
-                  {v.title}
-                </h3>
-                <p className="mt-2 text-sm text-navy/60">{v.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       <CTA />
     </PageTransition>

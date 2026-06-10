@@ -4,7 +4,7 @@ import Stats from "@/sections/Stats";
 import AboutPreview from "@/sections/AboutPreview";
 import WhyUs from "@/sections/WhyUs";
 import ProjectsPreview from "@/sections/ProjectsPreview";
-import VisionMission from "@/sections/VisionMission";
+import MissionSlider from "@/sections/MissionSlider";
 import CTA from "@/sections/CTA";
 
 export default function Home() {
@@ -13,9 +13,9 @@ export default function Home() {
       <Hero />
       <Stats />
       <AboutPreview />
+      <MissionSlider />
       <WhyUs />
       <ProjectsPreview />
-      <VisionMission />
       <CTA />
     </PageTransition>
   );
