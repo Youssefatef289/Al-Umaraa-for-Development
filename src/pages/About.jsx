@@ -6,7 +6,6 @@ import SectionHeading from "@/components/SectionHeading";
 import AboutPreview from "@/sections/AboutPreview";
 import MissionSlider from "@/sections/MissionSlider";
 import WhyUs from "@/sections/WhyUs";
-import Stats from "@/sections/Stats";
 import CTA from "@/sections/CTA";
 
 const timeline = [
@@ -123,8 +122,6 @@ export default function About() {
           <Timeline />
         </div>
       </section>
-
-      <Stats />
 
       <CTA />
     </PageTransition>

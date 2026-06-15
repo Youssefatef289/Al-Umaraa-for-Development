@@ -6,15 +6,16 @@ export const site = {
   tagline: "نصنع مجتمعات سكنية تعيد تعريف الحياة العصرية",
   description:
     "شركة الأمراء للاستثمار والتطوير العقاري — رواد في تطوير المشاريع السكنية والتجارية والإدارية الفاخرة، نمزج بين التصميم العصري وأعلى معايير الجودة لنبني مجتمعات متكاملة.",
-  // ✏️ غيّر الرقم برقم الواتساب الفعلي بصيغة دولية (بدون + أو 00)
-  whatsapp: "201000000000",
-  phone: "+20 100 000 0000",
-  phoneHref: "tel:+201000000000",
+  whatsapp: "201040919668",
+  whatsappPhone: "01040919668",
+  phone: "01212449044",
+  phoneHref: "tel:+201212449044",
   email: "info@al-umaraa.com",
-  address: "التجمع الخامس، القاهرة الجديدة، مصر",
-  // إحداثيات الموقع للخريطة (مثال: القاهرة الجديدة)
+  address: "شرق النيل - امام البنك الاهلي, Beni Suef, Egypt",
+  mapHref:
+    "https://www.bing.com/maps/search?q=%D8%B4%D8%B1%D9%82+%D8%A7%D9%84%D9%86%D9%8A%D9%84+-+%D8%A7%D9%85%D8%A7%D9%85+%D8%A7%D9%84%D8%A8%D9%86%D9%83+%D8%A7%D9%84%D8%A7%D9%87%D9%84%D9%8A,Beni+Suef,Egypt&cp=29.075300%7E31.098250&lvl=15.2",
   mapEmbed:
-    "https://www.google.com/maps?q=New+Cairo,+Egypt&output=embed",
+    "https://www.google.com/maps?q=29.075300,31.098250&output=embed",
   social: {
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",

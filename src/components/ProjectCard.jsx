@@ -4,6 +4,37 @@ import { scaleIn } from "@/lib/motion";
 import { categoryLabels } from "@/data/projects";
 import { MapPin, ArrowLeft, Building } from "./Icons";
 
+function isVideo(src) {
+  return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
+}
+
+function ProjectMedia({ project, className }) {
+  if (project.coverVideo) {
+    return (
+      <video
+        src={project.coverVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className={className}
+        aria-label={project.name}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={project.cover}
+      alt={project.name}
+      loading="lazy"
+      decoding="async"
+      className={className}
+    />
+  );
+}
+
 export default function ProjectCard({ project }) {
   return (
     <motion.div variants={scaleIn}>
@@ -12,11 +43,8 @@ export default function ProjectCard({ project }) {
         className="group block overflow-hidden rounded-2xl border border-navy/10 bg-ink-card/70 backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-gold/40 hover:shadow-luxe"
       >
         <div className="relative aspect-[4/3] overflow-hidden">
-          <img
-            src={project.cover}
-            alt={project.name}
-            loading="lazy"
-            decoding="async"
+          <ProjectMedia
+            project={project}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
@@ -26,6 +54,11 @@ export default function ProjectCard({ project }) {
           {project.progress < 100 && (
             <span className="absolute bottom-4 right-4 rounded-full bg-ink/70 px-3 py-1 text-xs font-bold text-navy backdrop-blur">
               الإنجاز {project.progress}%
+            </span>
+          )}
+          {project.progress >= 100 && (
+            <span className="absolute bottom-4 right-4 rounded-full bg-gold/90 px-3 py-1 text-xs font-bold text-white backdrop-blur">
+              تم التسليم
             </span>
           )}
         </div>
@@ -57,3 +90,5 @@ export default function ProjectCard({ project }) {
     </motion.div>
   );
 }
+
+export { isVideo };

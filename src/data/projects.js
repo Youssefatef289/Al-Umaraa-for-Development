@@ -1,3 +1,5 @@
+import { portfolioProjects } from "./portfolio";
+
 export const categories = [
   { key: "all", label: "الكل" },
   { key: "residential", label: "سكني" },
@@ -16,7 +18,7 @@ export const categoryLabels = {
 const img = (id, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
-export const projects = [
+const legacyProjects = [
   {
     slug: "royal-residence",
     name: "رويال ريزيدنس",
@@ -216,5 +218,7 @@ export const projects = [
     ],
   },
 ];
+
+export const projects = [...portfolioProjects, ...legacyProjects];
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);

@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import { slideRight, slideLeft, staggerContainer, fadeUp } from "@/lib/motion";
 import { Check, ArrowLeft } from "@/components/Icons";
 import { site } from "@/data/site";
+import { StatsBar } from "@/sections/Stats";
 
 const points = [
   "تصاميم معمارية عصرية بمعايير عالمية",
@@ -91,6 +92,8 @@ export default function AboutPreview() {
           </Reveal>
         </motion.div>
       </div>
+
+      <StatsBar className="mt-14 sm:mt-16" />
     </section>
   );
 }

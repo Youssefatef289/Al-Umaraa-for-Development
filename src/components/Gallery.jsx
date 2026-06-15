@@ -2,6 +2,37 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Close, ArrowLeft } from "./Icons";
 
+function isVideo(src) {
+  return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
+}
+
+function GalleryMedia({ src, name, index, className, controls = false }) {
+  if (isVideo(src)) {
+    return (
+      <video
+        src={src}
+        autoPlay={!controls}
+        muted
+        loop={!controls}
+        playsInline
+        controls={controls}
+        preload="metadata"
+        className={className}
+        aria-label={`${name} - فيديو ${index + 1}`}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={`${name} - صورة ${index + 1}`}
+      loading="lazy"
+      className={className}
+    />
+  );
+}
+
 export default function Gallery({ images, name }) {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
@@ -30,11 +61,12 @@ export default function Gallery({ images, name }) {
         type="button"
         onClick={() => setOpen(true)}
         className="group relative block aspect-[16/10] w-full overflow-hidden rounded-2xl"
-        aria-label="تكبير الصورة"
+        aria-label="تكبير الوسائط"
       >
-        <img
+        <GalleryMedia
           src={images[active]}
-          alt={`${name} - صورة ${active + 1}`}
+          name={name}
+          index={active}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <span className="absolute bottom-4 left-4 rounded-full bg-ink/70 px-4 py-2 text-xs font-bold text-navy backdrop-blur">
@@ -45,7 +77,7 @@ export default function Gallery({ images, name }) {
       <div className="mt-4 grid grid-cols-5 gap-3">
         {images.map((src, i) => (
           <button
-            key={src}
+            key={`${src}-${i}`}
             type="button"
             onClick={() => setActive(i)}
             className={`relative aspect-square overflow-hidden rounded-xl border-2 transition-all ${
@@ -53,12 +85,12 @@ export default function Gallery({ images, name }) {
                 ? "border-gold opacity-100"
                 : "border-transparent opacity-60 hover:opacity-100"
             }`}
-            aria-label={`عرض الصورة ${i + 1}`}
+            aria-label={`عرض الوسائط ${i + 1}`}
           >
-            <img
+            <GalleryMedia
               src={src}
-              alt={`${name} مصغّرة ${i + 1}`}
-              loading="lazy"
+              name={name}
+              index={i}
               className="h-full w-full object-cover"
             />
           </button>
@@ -93,15 +125,21 @@ export default function Gallery({ images, name }) {
             >
               <ArrowLeft className="h-6 w-6 rotate-180" />
             </button>
-            <motion.img
+            <motion.div
               key={active}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              src={images[active]}
-              alt={`${name} - صورة ${active + 1}`}
-              className="max-h-[82vh] max-w-5xl rounded-xl object-contain"
+              className="max-h-[82vh] max-w-5xl rounded-xl"
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <GalleryMedia
+                src={images[active]}
+                name={name}
+                index={active}
+                controls={isVideo(images[active])}
+                className="max-h-[82vh] max-w-5xl rounded-xl object-contain"
+              />
+            </motion.div>
             <button
               type="button"
               onClick={(e) => {
