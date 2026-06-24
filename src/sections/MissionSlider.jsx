@@ -8,7 +8,7 @@ const slides = [
   {
     key: "message",
     label: "رسالتنا",
-    image: "/our-message.png",
+    image: "/ya-message.webp",
     title: "نُقدّم حلولًا عقارية مُبتكرة تُلبي احتياجاتك وتُحقق تطلعاتك.",
     paragraphs: [
       "في شركة الأمراء للتطوير العقاري، نكرّس جهودنا لتقديم مشاريع عقارية تتميز بأعلى معايير الجودة والابتكار، والالتزام التام بتلبية احتياجات عملائنا وتجاوز توقعاتهم. رسالتنا أن نكون شريكًا موثوقًا لعملائنا من خلال تقديم منتجات عقارية عالية الجودة، تتسم بالتميز في التصميم والتنفيذ.",
@@ -18,7 +18,7 @@ const slides = [
   {
     key: "vision",
     label: "رؤيتنا",
-    image: "/our-vision.png",
+    image: "/ya-vision.webp",
     title: "نُبني مستقبلًا يُلهم أسلوب حياة استثنائي.",
     paragraphs: [
       "رؤيتنا في شركة الأمراء للتطوير العقاري هي أن نكون في طليعة شركات التطوير العقاري في مصر والشرق الأوسط، من خلال تقديم مشاريع مبتكرة وعالية الجودة لتلبية احتياجات عملائنا وتحقيق تطلعاتهم.",
@@ -28,7 +28,7 @@ const slides = [
   {
     key: "values",
     label: "قيمنا",
-    image: "/our-values.png",
+    image: "/ya-values.webp",
     title: "قيمنا أساس نجاحنا.",
     values: [
       { name: "الجودة", desc: "مشاريع تتميز بأعلى معايير الجودة في التصميم والتنفيذ لضمان رضا عملائنا." },
@@ -66,12 +66,9 @@ export default function MissionSlider() {
           {slides.map((s, i) => (
             <button
               key={s.key}
+              type="button"
               onClick={() => setIndex(i)}
-              className={`rounded-xl px-5 py-2.5 text-sm font-bold transition-all duration-300 sm:px-7 sm:text-base ${
-                i === index
-                  ? "bg-gold text-white shadow-gold"
-                  : "bg-navy/[0.05] text-navy/60 hover:bg-navy/10 hover:text-navy"
-              }`}
+              className={`btn-sm ${i === index ? "btn-gold btn-gold-filled" : "btn-outline"}`}
             >
               {s.label}
             </button>
@@ -124,17 +121,22 @@ export default function MissionSlider() {
               )}
             </div>
 
-            {/* Image side — large, no background */}
-            <div className="order-first lg:order-none">
-              <motion.img
-                src={slide.image}
-                alt={slide.label}
-                loading="lazy"
+            {/* Image side — مربعة */}
+            <div className="order-first flex justify-center lg:order-none">
+              <motion.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="mx-auto w-full max-w-2xl rounded-3xl object-contain lg:scale-105"
-              />
+                className="aspect-square w-full max-w-sm overflow-hidden sm:max-w-md lg:max-w-lg"
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.label}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </motion.div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -142,9 +144,10 @@ export default function MissionSlider() {
         {/* Controls */}
         <div className="mt-12 flex items-center justify-center gap-5">
           <button
+            type="button"
             onClick={prev}
             aria-label="السابق"
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-navy/15 text-navy transition-all hover:border-gold hover:bg-gold hover:text-white"
+            className="btn-icon"
           >
             <ArrowRight className="h-5 w-5" />
           </button>
@@ -163,9 +166,10 @@ export default function MissionSlider() {
           </div>
 
           <button
+            type="button"
             onClick={next}
             aria-label="التالي"
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-navy/15 text-navy transition-all hover:border-gold hover:bg-gold hover:text-white"
+            className="btn-icon"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>

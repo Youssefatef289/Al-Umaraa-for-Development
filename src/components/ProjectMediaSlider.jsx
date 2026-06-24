@@ -52,7 +52,7 @@ export default function ProjectMediaSlider({ media, name }) {
             type="button"
             onClick={prev}
             aria-label="السابق"
-            className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gold text-white shadow-gold transition-transform hover:scale-105"
+            className="btn-icon absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white/90"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
@@ -60,7 +60,7 @@ export default function ProjectMediaSlider({ media, name }) {
             type="button"
             onClick={next}
             aria-label="التالي"
-            className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gold text-white shadow-gold transition-transform hover:scale-105"
+            className="btn-icon absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-white/90"
           >
             <ArrowLeft className="h-5 w-5 rotate-180" />
           </button>

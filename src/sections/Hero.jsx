@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
+import FlipRotator from "@/components/FlipRotator";
 import { ArrowLeft, Phone, Star } from "@/components/Icons";
 import { site } from "@/data/site";
 
-// مدة تشغيل الفيديو في الهيرو (بالثواني) قبل الإعادة من البداية
 const HERO_VIDEO_LIMIT = 30;
 
 export default function Hero() {
@@ -21,18 +21,15 @@ export default function Hero() {
     }
   };
 
-  // Parallax بسيط: الفيديو يتحرك ببطء والنص يطلع لأعلى أثناء السكروول
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-22%"]);
-
   const ease = [0.22, 1, 0.36, 1];
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
-      {/* Video background */}
       <motion.div style={{ y: videoY }} className="absolute inset-0 -z-10 scale-110">
         <video
           className="h-full w-full object-cover"
@@ -48,69 +45,74 @@ export default function Hero() {
         </video>
       </motion.div>
 
-      <motion.div style={{ y: contentY }} className="container-x relative z-10 pt-24">
-        <div className="max-w-3xl">
+      <div className="absolute inset-0 -z-[5] bg-navy/45" />
+
+      <motion.div
+        style={{ y: contentY }}
+        className="container-x relative z-10 flex flex-col items-center pt-24 text-center"
+      >
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7, ease }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold backdrop-blur"
           >
-            <Star className="h-4 w-4" />
-            {site.fullName}
+            <Star className="h-4 w-4 shrink-0" />
+            {site.hero.badge}
           </motion.div>
 
-          <h1 className="font-display text-4xl font-extrabold leading-[1.15] text-white text-balance drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
-            {"نصنع مجتمعات سكنية".split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.12, duration: 0.7, ease }}
-                className="inline-block ml-3"
-              >
-                {word}
-              </motion.span>
-            ))}
-            <br />
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.75, duration: 0.7, ease }}
-              className="text-gold-gradient"
-            >
-              تعيد تعريف الحياة العصرية
-            </motion.span>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.8, ease }}
+            className="font-display text-4xl font-extrabold leading-[1.35] text-balance drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-5xl sm:leading-[1.3] lg:text-6xl lg:leading-[1.25]"
+          >
+            <span className="block min-h-[1.35em] text-white sm:min-h-[1.3em]">
+              <FlipRotator
+                items={site.hero.titleVariants}
+                interval={4000}
+                className="text-white"
+              />
+            </span>
+
+            <span className="mt-4 block min-h-[1.35em] text-gold-light sm:mt-5 sm:min-h-[1.3em]">
+              <FlipRotator
+                items={site.hero.subtitleVariants}
+                interval={4200}
+                className="text-gold-light"
+              />
+            </span>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95, duration: 0.7, ease }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)]"
+            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] sm:mt-8 sm:text-lg"
           >
-            {site.description}
+            {site.hero.description}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.7, ease }}
-            className="mt-9 flex flex-wrap gap-4"
+            className="mt-9 flex flex-wrap items-center justify-center gap-4"
           >
-            <Link to="/projects" className="btn-gold">
-              مشاريعنا
+            <Link to="/projects" className="btn-light">
+              {site.hero.ctaProjects}
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <a href={site.phoneHref} className="btn-light">
+              {site.hero.ctaContact}
               <Phone className="h-4 w-4" />
-              تواصل معنا
+
             </a>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

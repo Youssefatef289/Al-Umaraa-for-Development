@@ -1,99 +1,54 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Reveal from "@/components/Reveal";
-import { slideRight, slideLeft, staggerContainer, fadeUp } from "@/lib/motion";
-import { Check, ArrowLeft } from "@/components/Icons";
+import AboutImagePair from "@/components/AboutImagePair";
+import { slideRight, slideLeft } from "@/lib/motion";
 import { site } from "@/data/site";
-import { StatsBar } from "@/sections/Stats";
 
-const points = [
-  "تصاميم معمارية عصرية بمعايير عالمية",
-  "التزام صارم بمواعيد التسليم",
-  "مواقع استراتيجية في أرقى المناطق",
-  "أنظمة سداد مرنة تناسب الجميع",
+const paragraphs = [
+  `${site.fullName} شركة رائدة في مجال التطوير العقاري بمحافظة بني سويف، تأسست على أسس من الخبرة والمصداقية، وتعمل على تقديم حلول سكنية وتجارية تلبي تطلعات العملاء وتفوق توقعاتهم في كل مشروع.`,
+  "نمتلك خبرة واسعة في تطوير المشاريع السكنية والتجارية والإدارية، من الأبراج السكنية الفاخرة إلى الفلل المتكاملة، مع التزام صارم بأعلى معايير الجودة في التصميم والتنفيذ والتسليم في الموعد المحدد.",
+  "يعمل لدينا فريق من المهندسين والمتخصصين المحترفين، ونحرص على بناء علاقات طويلة الأمد مع عملائنا وشركائنا، لنكون الشريك الموثوق الذي يصنع مجتمعات سكنية تعيد تعريف الحياة العصرية.",
 ];
+
+const aboutImages = ["/about-us-01.webp", "/about-us-02.webp"];
 
 export default function AboutPreview() {
   return (
-    <section className="section overflow-hidden">
-      <div className="container-x grid items-center gap-14 lg:grid-cols-2">
-        <motion.div
-          variants={slideRight}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          className="relative"
-        >
-          <div className="relative aspect-square overflow-hidden rounded-3xl shadow-luxe">
-            <img
-              src="/about-section.jpg"
-              alt={`عن ${site.name} - شريكك في كل خطوة`}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-gold-gradient p-6 text-navy shadow-gold sm:block"
-          >
-            <p className="font-display text-4xl font-extrabold">15+</p>
-            <p className="text-sm font-bold">عامًا من التميّز</p>
-          </motion.div>
-        </motion.div>
-
+    <section className="section bg-white">
+      <div
+        className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20"
+        dir="ltr"
+      >
+        {/* النص — يسار */}
         <motion.div
           variants={slideLeft}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
+          className="text-right"
+          dir="rtl"
         >
-          <span className="eyebrow mb-3">
-            <span className="h-px w-8 bg-gold" />
-            من نحن
-          </span>
-          <h2 className="font-display text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
-            شريكك الموثوق في عالم العقارات الفاخرة
+          <p className="text-sm font-medium text-navy/45">من نحن</p>
+          <h2 className="mt-3 font-display text-3xl font-extrabold leading-snug text-navy sm:text-4xl lg:text-[2.35rem]">
+            قصة مبنية على المصداقية
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-navy/65">
-            {site.fullName} شركة رائدة متخصصة في تطوير المشاريع السكنية والتجارية
-            والإدارية. نؤمن بأن المكان ليس مجرد جدران، بل أسلوب حياة متكامل، لذلك
-            نهتم بكل تفصيلة من التصميم وحتى التسليم.
-          </p>
 
-          <motion.ul
-            variants={staggerContainer(0.12)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="mt-8 grid gap-4 sm:grid-cols-2"
-          >
-            {points.map((p) => (
-              <motion.li
-                key={p}
-                variants={fadeUp}
-                className="flex items-start gap-3"
-              >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
-                  <Check className="h-4 w-4" strokeWidth={2.5} />
-                </span>
-                <span className="text-sm leading-relaxed text-navy/75">{p}</span>
-              </motion.li>
+          <div className="mt-8 space-y-5 text-sm leading-[2] text-navy/70 sm:text-[0.95rem]">
+            {paragraphs.map((text) => (
+              <p key={text.slice(0, 24)}>{text}</p>
             ))}
-          </motion.ul>
+          </div>
+        </motion.div>
 
-          <Reveal delay={0.2} className="mt-9">
-            <Link to="/about" className="btn-gold">
-              تعرّف علينا أكثر
-              <ArrowLeft className="h-4 w-4" />
-            </Link>
-          </Reveal>
+        {/* الصور — يمين */}
+        <motion.div
+          variants={slideRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <AboutImagePair images={aboutImages} altBase={site.nameShort} />
         </motion.div>
       </div>
-
-      <StatsBar className="mt-14 sm:mt-16" />
     </section>
   );
 }

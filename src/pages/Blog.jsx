@@ -52,7 +52,7 @@ export default function Blog() {
               <p className="mt-4 leading-relaxed text-navy/65">
                 {featured.excerpt}
               </p>
-              <button className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-gold transition-all hover:gap-3">
+              <button type="button" className="btn-outline btn-sm mt-6 w-fit">
                 اقرأ المقال
                 <ArrowLeft className="h-4 w-4" />
               </button>
@@ -99,7 +99,7 @@ export default function Blog() {
                   <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-navy/60">
                     {post.excerpt}
                   </p>
-                  <button className="mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-gold transition-all group-hover:gap-3">
+                  <button type="button" className="btn-outline btn-sm mt-5 w-fit">
                     اقرأ المزيد
                     <ArrowLeft className="h-4 w-4" />
                   </button>

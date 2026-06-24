@@ -4,6 +4,22 @@ const paymentPlans = [
   { name: "الكاش", down: "خصم 20%", years: "دفعة واحدة" },
 ];
 
+const img = (id, w = 1200) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+const projectImages = {
+  tower: [
+    img("photo-1545324418-cc1a3fa10c00"),
+    img("photo-1486406146926-c627a92ad1ab"),
+    img("photo-1512917774080-9991f1c4c750"),
+  ],
+  villa: [
+    img("photo-1600585154340-be6161a56a0c"),
+    img("photo-1600047509807-ba8f99d2cdde"),
+    img("photo-1600596542815-ffad4c1539a9"),
+  ],
+};
+
 function createPortfolio({
   slug,
   file,
@@ -13,8 +29,10 @@ function createPortfolio({
   description,
   floors = 8,
   units = 32,
+  mediaType = slug.startsWith("villa") ? "villa" : "tower",
 }) {
   const video = `/projects/${file}`;
+  const images = projectImages[mediaType] ?? projectImages.tower;
   return {
     slug,
     name,
@@ -26,8 +44,8 @@ function createPortfolio({
     short,
     description,
     coverVideo: video,
-    cover: video,
-    gallery: [video],
+    cover: images[0],
+    gallery: [video, ...images],
     building: {
       floors,
       unitsPerFloor: 4,

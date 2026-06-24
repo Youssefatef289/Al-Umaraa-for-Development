@@ -8,11 +8,11 @@ export default function Logo({ className = "", showText = true, light = false })
       className={`group flex items-center gap-3 ${className}`}
       aria-label={site.name}
     >
-      <span className="relative flex h-20 w-20 items-center justify-center transition-transform duration-300 group-hover:scale-105">
+      <span className="relative flex h-20 w-40 items-center justify-center transition-transform duration-300 group-hover:scale-105">
         <img
-          src="/logo.png"
+          src={light ? "/logo-white.png" : "/logo-navy.png"}
           alt={site.name}
-          className="h-full w-full object-cover "
+          className="h-full w-full object-cover transition-opacity duration-500"
           loading="eager"
           decoding="async"
         />

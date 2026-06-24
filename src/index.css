@@ -49,24 +49,138 @@ body {
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/40;
+    @apply relative inline-flex items-center justify-center gap-2 font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-gold/40;
+    min-height: 2.9em;
+    padding: 0.55em 1.5em;
+    border-radius: 11px;
+    border: 0.15em solid transparent;
+    background-color: transparent;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    text-align: center;
+    transition: all 0.6s ease;
+    cursor: pointer;
+  }
+
+  .btn svg {
+    width: 1.35em;
+    height: 1.35em;
+    flex-shrink: 0;
+    transition: transform 0.6s ease;
+  }
+
+  .btn:hover svg {
+    transform: translateX(-5px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn:hover svg {
+      transform: none;
+    }
   }
 
   .btn-gold {
-    @apply btn bg-gold-gradient text-white shadow-gold hover:-translate-y-0.5 hover:shadow-glow active:translate-y-0;
+    @apply btn;
+    border-color: #d5710c;
+    color: #d5710c;
+  }
+
+  .btn-gold:hover {
+    background-color: #d5710c;
+    color: #ffffff;
+  }
+
+  .btn-gold-filled {
+    background-color: #d5710c;
+    color: #ffffff;
+  }
+
+  .btn-gold-filled:hover {
+    background-color: #b35d08;
+    border-color: #b35d08;
   }
 
   .btn-outline {
-    @apply btn border border-navy/20 bg-navy/[0.04] text-navy hover:border-gold hover:bg-gold/10 hover:text-gold;
+    @apply btn;
+    border-color: rgba(11, 31, 58, 0.35);
+    color: #0b1f3a;
   }
 
-  /* زر شفاف على خلفية داكنة (مثل النافبار/الهيرو فوق الفيديو) */
+  .btn-outline:hover {
+    background-color: #0b1f3a;
+    border-color: #0b1f3a;
+    color: #ffffff;
+  }
+
   .btn-light {
-    @apply btn border border-white/30 bg-white/10 text-white backdrop-blur hover:border-gold hover:bg-gold hover:text-white;
+    @apply btn;
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+  }
+
+  .btn-light:hover {
+    background-color: #d5710c;
+    border-color: #d5710c;
+    color: #ffffff;
   }
 
   .btn-ghost {
-    @apply btn bg-navy/5 text-navy backdrop-blur hover:bg-navy/10;
+    @apply btn;
+    border-color: rgba(11, 31, 58, 0.2);
+    color: #0b1f3a;
+  }
+
+  .btn-ghost:hover {
+    background-color: rgba(11, 31, 58, 0.08);
+    border-color: rgba(11, 31, 58, 0.35);
+  }
+
+  .btn-whatsapp {
+    @apply btn;
+    border-color: #25d366;
+    color: #25d366;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: #25d366;
+    border-color: #25d366;
+    color: #ffffff;
+  }
+
+  .btn-sm {
+    min-height: 2.5em;
+    padding: 0.45em 1.15em;
+    font-size: 0.8125rem;
+  }
+
+  .btn-sm svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  .btn-icon {
+    @apply btn;
+    min-height: auto;
+    width: 2.75em;
+    height: 2.75em;
+    padding: 0;
+    border-color: rgba(11, 31, 58, 0.15);
+    color: rgba(11, 31, 58, 0.7);
+  }
+
+  .btn-icon svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  .btn-icon:hover {
+    background-color: #d5710c;
+    border-color: #d5710c;
+    color: #ffffff;
+  }
+
+  .btn-icon:hover svg {
+    transform: none;
   }
 
   .glass {
@@ -83,6 +197,260 @@ body {
 
   .eyebrow {
     @apply inline-flex items-center gap-2 text-sm font-bold tracking-widest text-gold;
+  }
+
+  /* بطاقات المشاريع */
+  .project-card {
+    position: relative;
+    min-height: 480px;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    transition: 0.5s ease;
+    color: #ffffff;
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    .project-card {
+      min-height: 460px;
+    }
+  }
+
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(11, 31, 58, 0.78) 0%,
+      rgba(11, 31, 58, 0.2) 38%,
+      transparent 68%
+    );
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .project-card:hover::before {
+    background: linear-gradient(
+      to top,
+      rgba(11, 31, 58, 0.9) 0%,
+      rgba(11, 31, 58, 0.45) 55%,
+      transparent 100%
+    );
+  }
+
+  .project-card:hover {
+    transform: scale(1.03);
+    border-radius: 16px;
+    z-index: 2;
+  }
+
+  .project-card-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .project-card-media-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.6s ease;
+  }
+
+  .project-card-media-item.is-active {
+    opacity: 1;
+  }
+
+  .project-card:hover .project-card-media-item.is-active {
+    transform: scale(1.06);
+  }
+
+  .project-card-dots {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 3;
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .project-card-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.35);
+    transition: all 0.3s ease;
+  }
+
+  .project-card-dot.is-active {
+    width: 1.1rem;
+    background: #d5710c;
+  }
+
+  .project-card-details {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    text-align: right;
+  }
+
+  .project-card-header {
+    margin: 0;
+    font-family: Cairo, Tajawal, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.35;
+    text-shadow: 0 2px 12px rgba(11, 31, 58, 0.55);
+  }
+
+  @media (min-width: 640px) {
+    .project-card-header {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-card-header {
+      font-size: 1.15rem;
+    }
+
+    .project-card-details {
+      padding: 1rem;
+    }
+
+    .project-card-text {
+      font-size: 0.8125rem;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  .typewriter-cursor {
+    display: inline-block;
+    margin-right: 2px;
+    color: #d5710c;
+    font-weight: 400;
+    animation: typewriter-blink 0.75s step-end infinite;
+  }
+
+  .typewriter-cursor.is-done {
+    animation: none;
+    opacity: 0;
+  }
+
+  @keyframes typewriter-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .project-card-extra {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(8px);
+    transition:
+      max-height 0.55s ease,
+      opacity 0.45s ease,
+      transform 0.45s ease;
+  }
+
+  .project-card-text {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-card-location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .project-card-cta {
+    margin-top: 0.25rem;
+    width: max-content;
+  }
+
+  .project-card:hover .project-card-extra {
+    max-height: 220px;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+
+  @media (hover: none) {
+    .project-card-extra {
+      max-height: 220px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card {
+      transform: none;
+    }
+  }
+
+  /* زوج صور قسم من نحن — ارتفاع موحّد */
+  .about-image-pair {
+    display: grid;
+    width: 100%;
+    gap: 24px;
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+    aspect-ratio: 16 / 10;
+  }
+
+  .about-image-pair__cell {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .about-image-pair__cell img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%);
+  }
+
+  @media (max-width: 639px) {
+    .about-image-pair {
+      grid-template-columns: 1fr;
+      aspect-ratio: auto;
+      gap: 16px;
+    }
+
+    .about-image-pair__cell {
+      aspect-ratio: 16 / 10;
+    }
   }
 }
 
@@ -115,6 +483,41 @@ body {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+.flip-rotator {
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+.flip-rotator-hide {
+  animation: flip-rotator-hide 0.5s ease-in forwards;
+}
+
+.flip-rotator-enter {
+  animation: flip-rotator-enter 0.5s ease-out forwards;
+}
+
+@keyframes flip-rotator-hide {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flip-rotator-enter {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
   }
 }
 

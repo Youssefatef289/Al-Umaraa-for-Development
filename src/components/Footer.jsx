@@ -4,7 +4,6 @@ import {
   Instagram,
   Linkedin,
   Youtube,
-  MapPin,
   Phone,
   Mail,
   WhatsAppIcon,
@@ -20,155 +19,130 @@ export default function Footer() {
     { href: site.social.youtube, icon: Youtube, label: "يوتيوب" },
   ];
 
-  const contacts = [
-    {
-      icon: MapPin,
-      label: "العنوان",
-      value: site.address,
-      href: site.mapHref,
-      external: true,
-    },
-    {
-      icon: Phone,
-      label: "الهاتف",
-      value: site.phone,
-      href: site.phoneHref,
-      dir: "ltr",
-    },
-    {
-      icon: WhatsAppIcon,
-      label: "واتساب",
-      value: site.whatsappPhone,
-      href: whatsappLink(),
-      external: true,
-      dir: "ltr",
-    },
-    {
-      icon: Mail,
-      label: "البريد الإلكتروني",
-      value: site.email,
-      href: `mailto:${site.email}`,
-    },
-  ];
-
   return (
-    <footer className="relative bg-[#0B1F3A] shadow-[0_-28px_56px_-16px_rgba(11,31,58,0.42)]">
-      {/* Soft shadow fade above footer */}
+    <footer className="relative overflow-hidden shadow-[0_-28px_56px_-12px_rgba(0,0,0,0.55)]">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-16 h-16"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 0%, rgba(11,31,58,0.06) 45%, rgba(11,31,58,0.22) 100%)",
-        }}
+        className="pointer-events-none absolute inset-x-0 -top-14 z-20 h-14 bg-gradient-to-b from-transparent via-black/10 to-black/35"
+      />
+
+      <img
+        src="/footer.webp"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover"
+        aria-hidden
+      />
+
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/60 via-navy/88 to-navy/95 backdrop-blur-[2px]"
+        aria-hidden
       />
       <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(11,31,58,0.45)_100%)]"
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-8"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.04) 55%, transparent 100%)",
-        }}
       />
 
-      {/* Gold accent line */}
-      <div className="relative h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+      <div className="relative z-10 border-t border-white/15 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]">
+        <div className="container-x py-8 sm:py-9">
+          <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr_1fr] md:items-start md:gap-6 lg:gap-10">
+            {/* Brand */}
+            <div className="text-center md:text-right">
+              <Link to="/" aria-label={site.name} className="inline-block">
+                <img
+                  src="/logo-white.png"
+                  alt={site.fullName}
+                  loading="lazy"
+                  decoding="async"
+                  className="mx-auto h-14 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] md:mx-0 md:h-16"
+                />
+              </Link>
+              <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-white/90 md:mx-0 sm:text-sm">
+                {site.tagline}
+              </p>
+            </div>
 
-      <div className="container-x py-8 sm:py-10">
-        <div className="mx-auto grid max-w-5xl items-start gap-8 lg:grid-cols-12 lg:gap-8">
-          {/* Brand */}
-          <div className="text-center lg:col-span-4 lg:text-right">
-            <Link to="/" aria-label={site.name} className="group inline-block">
-              <img
-                src="/logo-footer.png"
-                alt={site.fullName}
-                loading="lazy"
-                decoding="async"
-                className="mx-auto h-24 w-16 object-cover transition-transform duration-300 group-hover:scale-105 sm:h-28 sm:w-36 md:h-32 md:w-44 lg:mx-0"
-              />
-            </Link>
-            <p className="mx-auto mt-3 max-w-xs text-xs leading-relaxed text-white/55 sm:text-sm lg:mx-0">
-              {site.tagline}
-            </p>
-          </div>
+            {/* Links */}
+            <div className="text-center md:text-right">
+              <h3 className="mb-3 text-xs font-bold text-gold-light sm:text-sm">
+                روابط سريعة
+              </h3>
+              <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="text-xs font-medium text-white/90 transition-colors hover:text-gold-light sm:text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
 
-          {/* Quick links */}
-          <div className="text-center lg:col-span-3 lg:text-right">
-            <h3 className="mb-3 text-xs font-bold tracking-wide text-gold-light sm:text-sm">
-              روابط سريعة
-            </h3>
-            <nav className="flex flex-col items-center gap-2 lg:items-start">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="text-xs font-medium text-white/70 transition-colors hover:text-gold-light sm:text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Contact */}
-          <div className="text-center lg:col-span-5 lg:text-right">
-            <h3 className="mb-3 text-xs font-bold tracking-wide text-gold-light sm:text-sm">
-              تواصل معنا
-            </h3>
-            <ul className="space-y-3">
-              {contacts.map((item) => (
-                <li key={item.label}>
-                  <div className="flex items-start justify-center gap-2.5 lg:justify-start">
-                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gold-light">
-                      <item.icon className="h-3.5 w-3.5" />
-                    </span>
-                    <div className="min-w-0 text-right">
-                      <p className="text-[11px] text-white/40 sm:text-xs">{item.label}</p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          dir={item.dir}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noopener noreferrer" : undefined}
-                          className="mt-0.5 block text-xs font-medium text-white/75 transition-colors hover:text-gold-light sm:text-sm"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="mt-0.5 text-xs font-medium text-white/75 sm:text-sm">
-                          {item.value}
-                        </p>
-                      )}
-                    </div>
-                  </div>
+            {/* Contact */}
+            <div className="text-center md:text-right">
+              <h3 className="mb-3 text-xs font-bold text-gold-light sm:text-sm">
+                تواصل معنا
+              </h3>
+              <ul className="space-y-2 text-xs font-medium text-white/90 sm:text-sm">
+                <li>
+                  <a
+                    href={site.phoneHref}
+                    dir="ltr"
+                    className="inline-flex items-center justify-center gap-2 transition-colors hover:text-gold-light md:justify-start"
+                  >
+                    <Phone className="h-3.5 w-3.5 text-gold-light" />
+                    {site.phone}
+                  </a>
                 </li>
+                <li>
+                  <a
+                    href={whatsappLink()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    dir="ltr"
+                    className="inline-flex items-center justify-center gap-2 transition-colors hover:text-gold-light md:justify-start"
+                  >
+                    <WhatsAppIcon className="h-3.5 w-3.5 text-gold-light" />
+                    {site.whatsappPhone}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center justify-center gap-2 transition-colors hover:text-gold-light md:justify-start"
+                  >
+                    <Mail className="h-3.5 w-3.5 text-gold-light" />
+                    {site.email}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/20 pt-5 sm:flex-row">
+            <p className="text-center text-[11px] text-white/75 sm:text-right sm:text-xs">
+              © {year} {site.fullName}. جميع الحقوق محفوظة.
+            </p>
+
+            <div className="flex items-center gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/25 bg-black/20 text-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.25)] transition-colors hover:border-gold hover:bg-gold hover:text-white"
+                >
+                  <s.icon className="h-3.5 w-3.5" />
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
-
-        {/* Socials */}
-        <div className="mx-auto mt-8 flex max-w-5xl justify-center gap-2.5 lg:justify-start">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.label}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 text-white/70 transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:bg-gold hover:text-white"
-            >
-              <s.icon className="h-4 w-4" />
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Copyright */}
-      <div className="border-t border-white/10 py-3.5">
-        <p className="container-x text-center text-xs text-white/40">
-          © {year} {site.fullName}. جميع الحقوق محفوظة.
-        </p>
       </div>
     </footer>
   );

@@ -87,7 +87,7 @@ export default function Contact() {
               href={whatsappLink(`مرحبًا ${site.name}، أريد الاستفسار.`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#20bd5a]"
+              className="btn-whatsapp mt-7 w-fit"
             >
               <WhatsAppIcon className="h-5 w-5" />
               محادثة واتساب فورية
@@ -103,7 +103,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-navy/10 text-navy/70 transition-all hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-navy"
+                    className="btn-icon"
                   >
                     <s.icon className="h-5 w-5" />
                   </a>

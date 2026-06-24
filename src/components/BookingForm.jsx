@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check } from "./Icons";
+import { Check, ArrowLeft } from "./Icons";
 import { site, whatsappLink } from "@/data/site";
 
 const initial = { name: "", phone: "", email: "", message: "" };
@@ -102,7 +102,10 @@ export default function BookingForm({ projectName = "", compact = false }) {
             تم الإرسال بنجاح
           </>
         ) : (
-          "إرسال الطلب"
+          <>
+            إرسال الطلب
+            <ArrowLeft className="h-4 w-4" />
+          </>
         )}
       </button>
       <p className="text-center text-xs text-navy/40">

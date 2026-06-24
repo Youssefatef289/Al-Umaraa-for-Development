@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "./Logo";
-import { Menu, Close, Phone } from "./Icons";
+import { Menu, Close, Phone, ArrowLeft } from "./Icons";
 import { navLinks, site } from "@/data/site";
 
 export default function Navbar() {
@@ -69,12 +69,14 @@ export default function Navbar() {
             href={site.phoneHref}
             className={`!px-5 !py-2.5 ${scrolled ? "btn-outline" : "btn-light"}`}
           >
-            <Phone className="h-4 w-4" />
+            
             اتصل بنا
+            <Phone className="h-3.5 w-3.5" />
           </a>
-          <Link to="/projects" className="btn-gold !px-6 !py-2.5">
+          {/* <Link to="/projects" className="btn-gold !px-6 !py-2.5">
             مشاريعنا
-          </Link>
+            <ArrowLeft className="h-4 w-4" />
+          </Link> */}
         </div>
 
         <button
@@ -135,6 +137,7 @@ export default function Navbar() {
                   className="btn-gold w-full"
                 >
                   استكشف المشاريع
+                  <ArrowLeft className="h-4 w-4" />
                 </Link>
               </div>
             </div>
